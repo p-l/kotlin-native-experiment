@@ -3,6 +3,7 @@ package com.sample.core.shared
 expect fun platformName(): String
 
 fun createApplicationScreenMessage() : String {
-  return "Kotlin Rocks on ${platformName()}"
+    var message = "Kotlin Rocks on ${platformName()}"
+    return message
 }
 

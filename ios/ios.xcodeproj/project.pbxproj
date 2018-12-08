@@ -14,6 +14,7 @@
 		47CC68C7215C0387001B3A20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC68C5215C0387001B3A20 /* LaunchScreen.storyboard */; };
 		6E00B82B21BC4D37003693C2 /* core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E00B82A21BC4D37003693C2 /* core.framework */; };
 		6E00B82D21BC4D53003693C2 /* core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E00B82A21BC4D37003693C2 /* core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6E57219C21BC618D007B596A /* build.gradle in Resources */ = {isa = PBXBuildFile; fileRef = 6E57219B21BC618D007B596A /* build.gradle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,8 @@
 		47CC68C6215C0387001B3A20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47CC68C8215C0387001B3A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E00B82A21BC4D37003693C2 /* core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = core.framework; path = "../core/build/xcode-frameworks/core.framework"; sourceTree = "<group>"; };
+		6E57219921BC6145007B596A /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		6E57219B21BC618D007B596A /* build.gradle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.gradle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				6E00B81D21BC4936003693C2 /* assets */,
+				6E57219A21BC6168007B596A /* core */,
 				47CC68BB215C0386001B3A20 /* src */,
 				6E00B81C21BC490E003693C2 /* storyboards */,
 				47CC68BA215C0386001B3A20 /* Products */,
@@ -105,6 +109,16 @@
 				6E00B82A21BC4D37003693C2 /* core.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E57219A21BC6168007B596A /* core */ = {
+			isa = PBXGroup;
+			children = (
+				6E57219B21BC618D007B596A /* build.gradle */,
+				6E57219921BC6145007B596A /* src */,
+			);
+			name = core;
+			path = ../core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47CC68C7215C0387001B3A20 /* LaunchScreen.storyboard in Resources */,
+				6E57219C21BC618D007B596A /* build.gradle in Resources */,
 				47CC68C4215C0387001B3A20 /* Assets.xcassets in Resources */,
 				47CC68C2215C0386001B3A20 /* Main.storyboard in Resources */,
 			);
