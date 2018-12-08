@@ -1,2 +1,2 @@
-include ':app'
-include ':SharedCode'
+include ':android'
+include ':core'
