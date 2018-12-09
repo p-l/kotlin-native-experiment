@@ -32,10 +32,11 @@ class HttpClient : NSObject, HttpClientInterface  {
                 }
             }
             task.progressHandler = { [weak self] in
-                let progressPercentage = $0*1000
+                let progress = $0
+                let progressPercentage = progress*1000
                 print("HttpClient - Progress: \(progressPercentage.rounded()/10)%")
                 if let handler = self?.progressHandler {
-                    _ = handler((progressPercentage.rounded()/10).toKotlinDouble())
+                    _ = handler(progress.toKotlinDouble())
                 }
             }
         }

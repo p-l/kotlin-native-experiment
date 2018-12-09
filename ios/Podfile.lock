@@ -1,0 +1,16 @@
+PODS:
+  - PinLayout (1.8.6)
+
+DEPENDENCIES:
+  - PinLayout
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PinLayout
+
+SPEC CHECKSUMS:
+  PinLayout: fe2a2432d6982588e208572005c941aeeae417ab
+
+PODFILE CHECKSUM: 806d404b43e90816f55ec158e288252039d6d76c
+
+COCOAPODS: 1.5.3

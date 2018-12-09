@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42C0238EBF44AAC9C0044612 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD869D068B0E4AB95487C96 /* libPods-ios.a */; };
 		47CC68BD215C0386001B3A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC68BC215C0386001B3A20 /* AppDelegate.swift */; };
 		47CC68BF215C0386001B3A20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC68BE215C0386001B3A20 /* ViewController.swift */; };
 		47CC68C2215C0386001B3A20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC68C0215C0386001B3A20 /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E8E60641530B2EBD4C86237 /* Pods-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.release.xcconfig"; sourceTree = "<group>"; };
+		3500BBBC228C00E9326DB7CB /* Pods-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios/Pods-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		47CC68B9215C0386001B3A20 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47CC68BC215C0386001B3A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47CC68BE215C0386001B3A20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		6E17951A21BC80E900EA23A1 /* KotlinConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinConversions.swift; sourceTree = "<group>"; };
 		6E57219921BC6145007B596A /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
 		6E57219B21BC618D007B596A /* build.gradle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.gradle; sourceTree = "<group>"; };
+		ABD869D068B0E4AB95487C96 /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E00B82B21BC4D37003693C2 /* core.framework in Frameworks */,
+				42C0238EBF44AAC9C0044612 /* libPods-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +82,7 @@
 				6E00B81C21BC490E003693C2 /* storyboards */,
 				47CC68BA215C0386001B3A20 /* Products */,
 				6E00B82221BC4B85003693C2 /* Frameworks */,
+				97A51A88CC97DA83E7602995 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				6E00B82A21BC4D37003693C2 /* core.framework */,
+				ABD869D068B0E4AB95487C96 /* libPods-ios.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,6 +170,15 @@
 			path = ../core;
 			sourceTree = "<group>";
 		};
+		97A51A88CC97DA83E7602995 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3500BBBC228C00E9326DB7CB /* Pods-ios.debug.xcconfig */,
+				2E8E60641530B2EBD4C86237 /* Pods-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,6 +186,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47CC68CB215C0387001B3A20 /* Build configuration list for PBXNativeTarget "ios" */;
 			buildPhases = (
+				5F5EC03CDBB5C025C7B7D1C5 /* [CP] Check Pods Manifest.lock */,
 				4741762C215D10D70075153C /* Run Script */,
 				47CC68B5215C0386001B3A20 /* Sources */,
 				47CC68B6215C0386001B3A20 /* Frameworks */,
@@ -250,6 +267,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ROOT_FOLDER=\"${SRCROOT}/../\"\nCORE_FOLDER=\"${ROOT_FOLDER}/core/\"\nFRAMEWORK_FOLDER=\"${CORE_FOLDER}/build/xcode-frameworks\"\n\nif [ ! -d \"${FRAMEWORK_FOLDER}\" ]; then\n    cd ${ROOT_FOLDER}\n    ./gradlew :core:build\nfi\n\ncd ${FRAMEWORK_FOLDER}\n./gradlew :core:packForXCode  -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
+		5F5EC03CDBB5C025C7B7D1C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -409,6 +448,7 @@
 		};
 		47CC68CC215C0387001B3A20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3500BBBC228C00E9326DB7CB /* Pods-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -431,6 +471,7 @@
 		};
 		47CC68CD215C0387001B3A20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E8E60641530B2EBD4C86237 /* Pods-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

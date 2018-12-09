@@ -29,3 +29,10 @@ extension Double {
     }
 }
 
+extension KotlinDouble {
+    func toDouble() -> Double {
+        return Double(self.doubleValue)
+    }
+}
+
+
