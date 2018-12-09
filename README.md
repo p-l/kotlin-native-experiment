@@ -15,3 +15,18 @@ in Kotlin and shared with both platforms and UI and platform specific behaviour
 `ios/src`                    : iOS specific source code
 
 ## Renaming the application
+
+`TBC`
+
+## Working with Kotlin/Native
+
+### Swift -> Kotlin objects
+
+Any swift class that interacts with Kotlin core needs to implement `NSObject`.
+Without this, you'll run into `toKotlin` method errors at runtime. The error
+will look something like what's bellow:
+
+```
+*** NSForwarding: warning: object 0x600001ee5b90 of class 'ios.HttpClient' does not implement methodSignatureForSelector: -- trouble ahead
+Unrecognized selector -[app.SwiftClass toKotlin:]
+```

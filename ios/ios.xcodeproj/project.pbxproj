@@ -14,6 +14,12 @@
 		47CC68C7215C0387001B3A20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47CC68C5215C0387001B3A20 /* LaunchScreen.storyboard */; };
 		6E00B82B21BC4D37003693C2 /* core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E00B82A21BC4D37003693C2 /* core.framework */; };
 		6E00B82D21BC4D53003693C2 /* core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E00B82A21BC4D37003693C2 /* core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6E17951021BC673E00EA23A1 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17950F21BC673E00EA23A1 /* DownloadService.swift */; };
+		6E17951221BC69E100EA23A1 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17951121BC69E100EA23A1 /* DownloadTask.swift */; };
+		6E17951421BC6A0000EA23A1 /* GenericDownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17951321BC6A0000EA23A1 /* GenericDownloadTask.swift */; };
+		6E17951621BC6A2800EA23A1 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17951521BC6A2800EA23A1 /* ResultType.swift */; };
+		6E17951821BC6FC600EA23A1 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17951721BC6FC600EA23A1 /* HttpClient.swift */; };
+		6E17951B21BC80E900EA23A1 /* KotlinConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E17951A21BC80E900EA23A1 /* KotlinConversions.swift */; };
 		6E57219C21BC618D007B596A /* build.gradle in Resources */ = {isa = PBXBuildFile; fileRef = 6E57219B21BC618D007B596A /* build.gradle */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +46,12 @@
 		47CC68C6215C0387001B3A20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47CC68C8215C0387001B3A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E00B82A21BC4D37003693C2 /* core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = core.framework; path = "../core/build/xcode-frameworks/core.framework"; sourceTree = "<group>"; };
+		6E17950F21BC673E00EA23A1 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		6E17951121BC69E100EA23A1 /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		6E17951321BC6A0000EA23A1 /* GenericDownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDownloadTask.swift; sourceTree = "<group>"; };
+		6E17951521BC6A2800EA23A1 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
+		6E17951721BC6FC600EA23A1 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		6E17951A21BC80E900EA23A1 /* KotlinConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinConversions.swift; sourceTree = "<group>"; };
 		6E57219921BC6145007B596A /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
 		6E57219B21BC618D007B596A /* build.gradle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.gradle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +91,10 @@
 		47CC68BB215C0386001B3A20 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				6E17951921BC80A200EA23A1 /* extensions */,
+				6E17950E21BC671A00EA23A1 /* http */,
+				6E17950D21BC670700EA23A1 /* views */,
 				47CC68BC215C0386001B3A20 /* AppDelegate.swift */,
-				47CC68BE215C0386001B3A20 /* ViewController.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -109,6 +123,34 @@
 				6E00B82A21BC4D37003693C2 /* core.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E17950D21BC670700EA23A1 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				47CC68BE215C0386001B3A20 /* ViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		6E17950E21BC671A00EA23A1 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				6E17950F21BC673E00EA23A1 /* DownloadService.swift */,
+				6E17951121BC69E100EA23A1 /* DownloadTask.swift */,
+				6E17951321BC6A0000EA23A1 /* GenericDownloadTask.swift */,
+				6E17951721BC6FC600EA23A1 /* HttpClient.swift */,
+				6E17951521BC6A2800EA23A1 /* ResultType.swift */,
+			);
+			path = http;
+			sourceTree = "<group>";
+		};
+		6E17951921BC80A200EA23A1 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6E17951A21BC80E900EA23A1 /* KotlinConversions.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		6E57219A21BC6168007B596A /* core */ = {
@@ -216,7 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E17951421BC6A0000EA23A1 /* GenericDownloadTask.swift in Sources */,
+				6E17951221BC69E100EA23A1 /* DownloadTask.swift in Sources */,
 				47CC68BF215C0386001B3A20 /* ViewController.swift in Sources */,
+				6E17951021BC673E00EA23A1 /* DownloadService.swift in Sources */,
+				6E17951B21BC80E900EA23A1 /* KotlinConversions.swift in Sources */,
+				6E17951821BC6FC600EA23A1 /* HttpClient.swift in Sources */,
+				6E17951621BC6A2800EA23A1 /* ResultType.swift in Sources */,
 				47CC68BD215C0386001B3A20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
