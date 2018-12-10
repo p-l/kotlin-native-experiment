@@ -17,6 +17,10 @@ kotlin {
         commonMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
         }
+
+        androidMain.dependencies {
+            api 'org.jetbrains.kotlin:kotlin-stdlib'
+        }
     }
 }
 

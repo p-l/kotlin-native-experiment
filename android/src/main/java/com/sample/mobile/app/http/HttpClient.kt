@@ -1,6 +1,6 @@
 package com.sample.mobile.app.http
 
-import com.sample.core.shared.HttpClientInterface
+import shared.core.HttpClientInterface
 
 import okhttp3.Call
 import okhttp3.Callback
@@ -58,7 +58,7 @@ class HttpClient : HttpClientInterface {
                                 bytesRead = source.read(sinkBuffer, bufferSize)
                                 sink.emit()
                                 totalBytesRead += bytesRead
-                                val progress = (totalBytesRead * 100 / contentLength).toDouble()
+                                val progress = (totalBytesRead / contentLength).toDouble()
                                 progressHandler?.invoke(progress)
                             }
                             sink.flush()

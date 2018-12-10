@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
-import com.sample.core.shared.Welcome
-import com.sample.core.shared.SpeedTest
+import shared.core.Welcome
+import shared.core.SpeedTest
+
 import com.sample.mobile.app.http.HttpClient
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         // Downloader
         val httpClient = HttpClient()
         val speedTest = SpeedTest(httpClient)
-        speedTest.testProgress = {
+        speedTest.testProgressString = {
             println(it)
         }
         speedTest.simpleTest()

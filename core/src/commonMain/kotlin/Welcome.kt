@@ -1,4 +1,4 @@
-package com.sample.core.shared
+package shared.core
 
 class Welcome {
     fun createApplicationScreenMessage(): String {

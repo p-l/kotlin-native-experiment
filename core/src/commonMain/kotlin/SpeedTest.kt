@@ -1,7 +1,7 @@
-package com.sample.core.shared
+package shared.core
 
-import kotlin.system.getTimeNanos
 import kotlin.math.round
+import shared.core.getTimeNanos
 
 class SpeedTest(val client : HttpClientInterface) {
     private val hundredMegaByteFile = "https://speed.hetzner.de/100MB.bin"
