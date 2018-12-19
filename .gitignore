@@ -47,7 +47,6 @@ playground.xcworkspace
 Pods/
 *.xcworkspace
 
-
 # Carthage
 Carthage/Checkouts/
 Carthage/Build/
@@ -60,3 +59,6 @@ fastlane/test_output
 
 # Code Injection
 iOSInjectionProject/
+
+# npm
+node_modules/

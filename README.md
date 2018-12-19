@@ -1,6 +1,6 @@
-# iOS & Android Kotlin/Native boilerplate project
+# iOS, Android & Web Kotlin/Native boilerplate project
 
-Sharing code between multiple platform is what every multi-plateform framework tries to do. Strking the right balance between shared code and native components and performance is what everyone struggles with. The approach in this sample project is to have the logic driving the applications is written in Kotlin and shared with both platforms and UI and platform specific behaviour (e.g. threading, networking, gps) are implemented with native API and language.
+Sharing code between multiple platform is what every multi-plateform framework tries to strike the right balance between shared code and native components and performance is what everyone struggles with. The approach in this sample project is to have the logic driving the applications written in Kotlin and shared with both platforms and UI and platform specific behaviour (e.g. threading, networking, gps) are implemented with native API and language.
 
 ## Project Sutructure
 
@@ -10,6 +10,7 @@ Sharing code between multiple platform is what every multi-plateform framework t
 `core/src/commonsMain`       : Multi-platform code
 `core/build/xcode-framrworks`: Where the ios Framework resides
 `ios/src`                    : iOS specific source code
+`web/src`                    : Experimental WebAssembly bridge
 
 ### Build the Android application
 
@@ -18,6 +19,12 @@ Start Android Studio and open the root of this project. It'll include the `core`
 ### Buld the iOS application
 
 Go to the `ios` folder. Run `pod install` to install dependancies. Open Xcode and open the `ios.xcworkspace`. You're ready to hit **build**.
+
+## Buld the web application
+
+You'll npm available on your machine. If you don't have it `brew install npm` on macOS.
+
+To build it: `gradle :web:build` then, to run a local web server and try it `gradle :web:run` and connect your browser to `http://localhost:8080/site/index.html`
 
 ## Working with Kotlin/Native
 

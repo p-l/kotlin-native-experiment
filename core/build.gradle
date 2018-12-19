@@ -1,6 +1,5 @@
 apply plugin: 'kotlin-multiplatform'
 
-
 kotlin {
     targets {
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
@@ -11,6 +10,9 @@ kotlin {
         }
 
         fromPreset(presets.jvm, 'android')
+
+        // WebAssembly target
+        fromPreset(presets.wasm32, 'web')
     }
 
     sourceSets {
@@ -21,6 +23,11 @@ kotlin {
         androidMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
         }
+
+        webMain.dependencies {
+            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+        }
+
     }
 }
 

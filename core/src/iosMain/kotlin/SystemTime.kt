@@ -1,4 +1,4 @@
-package com.sample.core.shared
+package shared.core
 
 // iOS has access to kotlin.system.getTimeNanos
 // Android doesn't. To avoid implementation nightmare. Abastract it away here.
