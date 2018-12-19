@@ -4,13 +4,13 @@ Sharing code between multiple platform is what every multi-plateform framework t
 
 ## Project Sutructure
 
-`android/src`                : Android specific code
-`core/src/androidMain`       : Android specific implementation of core methods
-`core/src/iosMain`           : iOS specific implementation of core methods
-`core/src/commonsMain`       : Multi-platform code
-`core/build/xcode-framrworks`: Where the ios Framework resides
-`ios/src`                    : iOS specific source code
-`web/src`                    : Experimental WebAssembly bridge
+* `android/src` ➡ Android specific code
+* `core/src/androidMain` ➡ Android specific implementation of core methods
+* `core/src/iosMain` ➡ iOS specific implementation of core methods
+* `core/src/commonsMain` ➡ Multi-platform code
+* `core/build/xcode-framrworks` ➡ Where the ios Framework resides
+* `ios/src` ➡ iOS specific source code
+* `web/src` ➡ Experimental WebAssembly bridge
 
 ### Build the Android application
 
