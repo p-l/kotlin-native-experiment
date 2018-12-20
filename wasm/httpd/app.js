@@ -1,11 +1,14 @@
-// Usage app.js <server_root> <server_port>
-
 const express = require('express')
 const morgan = require('morgan')
 const favicon = require('express-blank-favicon')
 
+// Force content-type to wasm
+// ref: https://github.com/expressjs/express/issues/3589
+// remove line when express@^4.17
+express.static.mime.types["wasm"] = "application/wasm";
+
 // Configuration
-server_port = process.env.PORT || process.argv[3] || 8080;
+server_port = process.env.PORT || process.argv[3] || 8000;
 server_root = process.argv[2] || '.'
  
 // Load the server

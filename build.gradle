@@ -11,7 +11,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-rc02'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // Required to use express as a web server for the :web project
+        // Javascript front-end (:web)
         classpath "com.github.node-gradle:gradle-node-plugin:1.3.0"
     }
 }

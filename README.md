@@ -10,7 +10,8 @@ Sharing code between multiple platform is what every multi-plateform framework t
 * `core/src/commonsMain` ➡ Multi-platform code
 * `core/build/xcode-framrworks` ➡ Where the ios Framework resides
 * `ios/src` ➡ iOS specific source code
-* `web/src` ➡ Experimental WebAssembly bridge
+* `web/src` - Web front-end and js specific source
+* `wasm/src` ➡ Experimental WebAssembly implementation
 
 ### Build the Android application
 
@@ -24,7 +25,9 @@ Go to the `ios` folder. Run `pod install` to install dependancies. Open Xcode an
 
 You'll npm available on your machine. If you don't have it `brew install npm` on macOS.
 
-To build it: `gradle :web:build` then, to run a local web server and try it `gradle :web:run` and connect your browser to `http://localhost:8080/site/index.html`
+To build it: `gradle :web:build` then, to run a local web server and try it `gradle :web:run` and connect your browser to `http://localhost:8080/`
+
+Everything is copied into the `web/build/site/` folder. Changing the source requires to run `gradle :web:assemble` for the moment.
 
 ## Working with Kotlin/Native
 
@@ -46,3 +49,14 @@ Unrecognized selector -[app.SwiftClass toKotlin:]
 ## Renaming the application
 
 `TBC`
+
+## A very imcomplete list of TODO
+
+[ ] Take the `android` client to the same level as `ios` client.
+[ ] Structure the `web` project like a proper pipeline that included typescript and dependancy manangement.
+[ ] Add `livereload` support for the `web` project.
+[ ] Implement the speed test in the `web` client.
+[ ] Clean-up the `wasm` portion and place some marsheling example between the WebAssembly and Javascript.
+[ ] Document how to add functionnality.
+[ ] Extract this in a set of template and library that are usable by other people
+ 

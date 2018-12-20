@@ -1,63 +1,101 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
-import java.nio.file.Paths
-
-apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlin2js'
 apply plugin: 'com.github.node-gradle.node'
 
-String packageName = 'kotlinx.interop.wasm.dom'
-String jsinteropKlibFileName = Paths.get(buildDir.toString(), 'klib', "$packageName-jsinterop.klib").toString()
 
-kotlin {
-    targets {
-        fromPreset(presets.wasm32, 'web') {
-            compilations.main.outputKinds 'EXECUTABLE'
-            compilations.main.entryPoint 'com.sample.mobile.web.main'
-        }
-    }
-    sourceSets {
-        webMain.dependencies {
-            implementation files(jsinteropKlibFileName)
-            implementation project(':core')
-        }
-    }
+compileKotlin2Js {
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'umd'
+    kotlinOptions.main = "call"
 }
+
+compileTestKotlin2Js {
+    kotlinOptions.metaInfo = true
+    kotlinOptions.sourceMap = true
+    kotlinOptions.moduleKind = 'umd'
+    kotlinOptions.main = "call"
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    implementation project(':core')
+}
+
+
+task assembleHtml(type: Copy) {
+    from("src/main/html") {
+        include '**/*.html'
+    }
+    into("${buildDir}/site")
+}
+
+// TODO: Create a pipeline to compile scss
+task assembleCss(type: Copy) {
+    from("src/main/css") {
+        include '**/*.css'
+    }
+    into("${buildDir}/site/css")
+}
+
+// TODO: Create a pipeline to generate HTML from template
+task assembleJs(type: Copy) {
+    from("src/main/js") {
+        include '**/*.js'
+    }
+    into("${buildDir}/site/js")
+}
+
+task assembleKotlinJs(type: Sync) {
+    configurations.compile.each { File file ->
+        from(zipTree(file.absolutePath), {
+            includeEmptyDirs = false
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || 
+                    !path.startsWith("META-INF/"))
+            }
+        })
+    }
+    from compileKotlin2Js.destinationDir
+    into "${buildDir}/site/ks"
+
+    dependsOn classes
+}
+
+task assembleKotlinJsOutput(type: Copy) {
+    from("build/classes/kotlin/main") {
+        include '**'
+    }
+    into("${buildDir}/site/ks")
+    dependsOn compileKotlin2Js
+}
+
+task assembleCoreKotlinJsOutput(type: Copy) {
+    from("${project(':core').projectDir.path}/build/classes/kotlin/js/main/") {
+         include '**'
+    }
+    into("${buildDir}/site/ks")
+    dependsOn compileKotlin2Js
+}
+
 
 task httpdNpmInstall(type: NpmTask) {
     description = "Installs dependencies from package.json"
-    workingDir = file("${project.projectDir}/httpd")
+    workingDir = file("$project.projectDir.path/httpd")
     args = ['install']
 }
 
 // This is to run embedded HTTP server with Ktor:
-task runProgram(type: NodeTask) {
-    dependsOn assemble
+task runHttpd(type: NodeTask) {
     script = file('httpd/app.js') 
     // 'server_root', 'server_port'
-    args = ["$projectDir",'8080']
+    args = ["$project.buildDir.path/site",'8080']
+    dependsOn httpdNpmInstall
+    dependsOn assemble
 }
 
-task jsinterop(type: Exec) {
-    workingDir projectDir
-    //TODO: Change default value to something that's platform specific
-    def distributionPath = project.hasProperty('org.jetbrains.kotlin.native.home') ? project.properties['org.jetbrains.kotlin.native.home'] : System.env.HOME+'/.konan/kotlin-native-macos-1.0.3'as String
-    if (distributionPath != null) {
-        def jsinteropDir = Paths.get(file(distributionPath).path, 'bin', "jsinterop")
-        commandLine jsinteropDir.toString(),
-                '-pkg', packageName,
-                '-o', jsinteropKlibFileName,
-                '-target', 'wasm32'
-    } else {
-        doFirst {
-            // Abort build execution if the distribution path isn't specified.
-            throw new GradleException("""\
-                |Kotlin/Native distribution path must be specified to build the JavaScript interop.
-                |Use 'org.jetbrains.kotlin.native.home' project property to specify it.
-            """.stripMargin())
-        }
-    }
-}
-
-tasks.withType(KotlinNativeCompile).all {
-    dependsOn jsinterop
-}
+assemble.dependsOn assembleKotlinJs
+assemble.dependsOn assembleKotlinJsOutput
+assemble.dependsOn assembleCoreKotlinJsOutput
+assemble.dependsOn assembleJs
+assemble.dependsOn assembleCss
+assemble.dependsOn assembleHtml

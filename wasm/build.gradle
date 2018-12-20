@@ -1,0 +1,63 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
+import java.nio.file.Paths
+
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.github.node-gradle.node'
+
+String packageName = 'kotlinx.interop.wasm.dom'
+String jsinteropKlibFileName = Paths.get(buildDir.toString(), 'klib', "$packageName-jsinterop.klib").toString()
+
+kotlin {
+    targets {
+        fromPreset(presets.wasm32, 'web') {
+            compilations.main.outputKinds 'EXECUTABLE'
+            compilations.main.entryPoint 'sample.wasm.main'
+        }
+    }
+    sourceSets {
+        webMain.dependencies {
+            implementation files(jsinteropKlibFileName)
+            implementation project(':core')
+        }
+    }
+}
+
+task httpdNpmInstall(type: NpmTask) {
+    description = "Installs dependencies from package.json"
+    workingDir = file("${project.projectDir}/httpd")
+    args = ['install']
+}
+
+// This is to run embedded HTTP server with Ktor:
+task runProgram(type: NodeTask) {
+    dependsOn assemble
+    script = file('httpd/app.js') 
+    // 'server_root', 'server_port'
+    args = ["$projectDir"]
+}
+
+task jsinterop(type: Exec) {
+    workingDir projectDir
+    //TODO: Change default value to something that's platform specific
+    def distributionPath = project.hasProperty('org.jetbrains.kotlin.native.home') ? project.properties['org.jetbrains.kotlin.native.home'] : System.env.HOME+'/.konan/kotlin-native-macos-1.0.3'as String
+    if (distributionPath != null) {
+        def jsinteropDir = Paths.get(file(distributionPath).path, 'bin', "jsinterop")
+        commandLine jsinteropDir.toString(),
+                '-pkg', packageName,
+                '-o', jsinteropKlibFileName,
+                '-target', 'wasm32'
+    } else {
+        doFirst {
+            // Abort build execution if the distribution path isn't specified.
+            throw new GradleException("""\
+                |Kotlin/Native distribution path must be specified to build the JavaScript interop.
+                |Use 'org.jetbrains.kotlin.native.home' project property to specify it.
+            """.stripMargin())
+        }
+    }
+}
+
+tasks.withType(KotlinNativeCompile).all {
+    dependsOn jsinterop
+}

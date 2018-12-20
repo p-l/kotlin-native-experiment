@@ -11,8 +11,9 @@ kotlin {
 
         fromPreset(presets.jvm, 'android')
 
-        // WebAssembly target
-        fromPreset(presets.wasm32, 'web')
+        fromPreset(presets.wasm32, 'wasm')
+
+        fromPreset(presets.js, 'js')
     }
 
     sourceSets {
@@ -24,8 +25,12 @@ kotlin {
             api 'org.jetbrains.kotlin:kotlin-stdlib'
         }
 
-        webMain.dependencies {
+        wasmMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+        }
+
+        jsMain.dependencies {
+            api "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
         }
 
     }
